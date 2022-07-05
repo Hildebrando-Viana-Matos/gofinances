@@ -31,7 +31,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     try {
       const CLIENT_ID =
         "937226741771-lk41mudlafi85karmtjkcndatk37vvk6.apps.googleusercontent.com";
-      const REDIRECT_URI = "https://auth.expo.io/@hildodev/gofinances";
+      const REDIRECT_URI = "https://auth.expo.io/@hildomatos/gofinances";
       const RESPONSE_TYPE = "token";
       const SCOPE = encodeURI("profile email");
 

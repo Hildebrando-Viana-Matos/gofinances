@@ -2,8 +2,9 @@
   "expo": {
     "name": "gofinances",
     "slug": "gofinances",
-    "schema": "gofinances",
+    "scheme": "gofinances",
     "version": "1.0.0",
+    "owner": "hildomatos",
     "assetBundlePatterns": [
       "**/*"
     ]
