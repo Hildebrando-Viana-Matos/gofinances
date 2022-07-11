@@ -7,6 +7,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { HighlightCard } from "../../components/HighlightCard";
 
 import { useFocusEffect } from "@react-navigation/native";
+import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 import {
   TransactionCard,
@@ -31,8 +33,6 @@ import {
   LoadContainer,
 } from "./styles";
 
-import { useTheme } from "styled-components";
-
 export interface DataListProps extends TransactionCardProps {
   id: string;
 }
@@ -54,6 +54,8 @@ export function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   const theme = useTheme();
+
+  const { signOut, user } = useAuth();
 
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HighlightData>(
@@ -180,18 +182,14 @@ export function Dashboard() {
           <Header>
             <UserWrapper>
               <UserInfo>
-                <Photo
-                  source={{
-                    uri: "https://github.com/Hildebrando-Viana-Matos.png",
-                  }}
-                />
+                <Photo source={{ uri: user.photo }} />
                 <User>
                   <UserGreeting>Olá, </UserGreeting>
-                  <UserName>Hildebrando</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
 
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>

@@ -13,7 +13,7 @@ import theme from "./src/global/styles/theme";
 
 import { Routes } from "./src/routes";
 
-import { AuthProvider } from "./src/hooks/auth";
+import { AuthProvider, useAuth } from "./src/hooks/auth";
 
 // Fonts
 import {
@@ -26,6 +26,8 @@ import { SignIn } from "./src/screens/SignIn";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
+  const { userStorageLoading } = useAuth();
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -33,7 +35,7 @@ export default function App() {
   });
 
   // If fonts it's loading, the user will stay on Splash Screen
-  if (!fontsLoaded) {
+  if (!fontsLoaded || userStorageLoading) {
     return <AppLoading />;
   }
 
